@@ -131,7 +131,7 @@ select_network() {
         break
         ;;
       2)
-        network="br0"
+        network="bridge=br0"
         break
         ;;
       3)
@@ -236,7 +236,7 @@ change_specs() {
     echo -e " 4. Done"
     echo -e "${CYAN}================================${RESET}"
     read -rp "Enter your choice: " choice
-    clear_previous_lines 7
+    clear_previous_lines 9
 
     case $choice in
       1)
