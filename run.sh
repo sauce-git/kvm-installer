@@ -13,6 +13,7 @@ network=""
 
 os_name=""
 os_version=""
+os_variant=""
 
 iso_name=""
 iso_url=""
@@ -77,6 +78,13 @@ select_deb_version() {
     case $choice in
       1)
         os_version="12"
+
+        if virt-install --os-variant list | grep -q "debian12"; then
+          os_variant="debian12"
+        else
+          os_variant="debian11"
+        fi
+
         iso_name="$DEB_12_ISO_NAME"
         iso_url="$DEB_12_ISO_URL"
         iso_path="/var/kvm/iso/$DEB_12_ISO_NAME"
@@ -276,6 +284,7 @@ install_vm() {
     --network "$network" \
     --graphics none \
     --location "$iso_path" \
+    --os-variant "$os_variant" \
     --boot uefi \
     --extra-args 'console=tty0 console=ttyS0,115200n8 --- console=tty0 console=ttyS0,115200n8'
 
