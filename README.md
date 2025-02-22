@@ -1,4 +1,4 @@
-# KVM creator
+# KVM installer
 ##### Script to create a KVM using libvirt
 
 ### Usage
